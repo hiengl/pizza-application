@@ -1,0 +1,19 @@
+{% extends "orders/base.html" %}
+
+{% block body %}
+<h1>Register</h1>
+{% if message %}
+    <div>
+        {{ message }}
+    </div>
+{% endif %}
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <p>Username    <input name="username" type="text"/></p>
+    <p>Password    <input name="password" type="password"/></p>
+    <p>Firstname    <input name="firstname" type="text"/></p>
+    <p>Lastname    <input name="lastname" type="text"/></p>
+    <p>Email address    <input name="email_address" type="text"/></p>
+    <p><input type="submit" value="Register"/></p>
+</form>
+{% endblock %}

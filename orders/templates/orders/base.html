@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-deep-orange.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<!-- Header -->
+<header class="w3-container w3-theme-l2 w3-padding" id="myHeader">
+  <title>Order Pizza</title>
+  <div class="w3-center">
+    <h1>PIZZA RESTAURANT</h1>
+  </div>
+  <div class="w3-bar w3-theme-light">
+    <a href="{% url 'foodlist' %}" class="w3-bar-item w3-button w3-padding-16">Menu</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-16">Your Order</a>
+    <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-padding-16 w3-right">Logout</a>
+    <a class="w3-bar-item w3-button w3-padding-16 w3-right">Hi, {{ user.username }}</a>
+  </div>
+</header>
+
+<body>
+    {% block body %}
+
+    {% endblock %}
+</body>
+
+<footer class="w3-container w3-theme-l2 w3-padding-16 w3">
+  <h3>Footer</h3>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-theme-light w3-padding">Go To Top</span>    
+    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+    <p>Remember to check out our  <a href="w3css_references.asp" class="w3-btn w3-theme-light" target="_blank">W3.CSS Reference</a></p>
+</footer>
+
+</html>

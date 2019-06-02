@@ -1,0 +1,68 @@
+{% extends "orders/base.html" %}
+
+{% block body %}
+<container>
+  <div class="w3-container w3-twothird w3-white">
+    <h3 class="w3-center">Our Menu</h3>
+        {% for category in category_list %}
+            <h4 class="w3-center w3-green">{{ category }}</h4>
+            {% if category.pizzamenu_set.all %}
+              <table class="w3-table">
+                <tr>
+                  <th></th>
+                  <th colspan="2" style="text-align:center">Small</th>
+                  <th colspan="2" style="text-align:center">Large</th>
+                </tr>           
+                {% for j in category.pizzamenu_set.all %}
+                    <tr>
+                      <td>{{ j.dish }}</td>
+                      <td style="text-align:right">{{ j.small_price }}</td>
+                      <td><a href="/menu/{{j.id}}/{{j.small_price}}" class="w3-button w3-round w3-small w3-theme-d4"><i class="fa fa-plus"></i></a></td>
+                      <td style="text-align:right">{{ j.large_price }}</td>
+                      <td><a href="/menu/{{j.id}}/{{j.large_price}}" class="w3-button w3-round w3-small w3-theme-d4"><i class="fa fa-plus"></i></a></td>
+                    </tr>
+                {% endfor %}
+              </table> <br>
+            {% else %}
+              <table class="w3-table">
+                <tr>
+                  <th></th>
+                  <th colspan="2" style="text-align:center">Price</th>
+                </tr>           
+                {% for j in category.pastaandsalads_set.all %}
+                    <tr>
+                      <td>{{ j.dish }}</td>
+                      <td style="text-align:right">{{ j.price }}</td>
+                      <td><a href="/menu/{{j.id}}/{{j.price}}" class="w3-button w3-small w3-round w3-theme-d4"><i class="fa fa-plus"></i></a></td>
+                    </tr>
+                {% endfor %}
+              </table> <br>
+            {% endif %}
+        {% endfor%}
+  </div>
+  <div class="w3-container w3-third w3-white">
+    <h3 class="w3-center">Order</h3>
+      <table class="w3-table">
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>           
+        {% for item in current_order %}
+            <tr>
+              <td>{{ item.item }}</td>
+              <td>$ {{ item.price }}</td>
+              <td><a href="{% url 'deletefromcart' item.id %}"><i class="fa fa-remove"></i></a></td>
+            </tr>
+        {% endfor %}
+            <tr>
+              <td><strong>Total</strong></td>
+              <td colspan="2">$ {{ total }}</td>
+            </tr>
+      </table> <br>
+    {% if total > 0 %} 
+        <h4 class="w3-center"><a href="{% url 'shoppingcart' %}" class="w3-button w3-theme-d4">Place Order</a></h4>
+    {% endif %} 
+  </div>
+</container>
+{% endblock %}
